@@ -2,5 +2,6 @@ import java.io.File;
 
 
 public interface IProblemReader {
-	abstract Problem read(File f);
+	//reads problem file and returns a problem class with all its parameters
+	abstract Problem createProblem(File f);
 }

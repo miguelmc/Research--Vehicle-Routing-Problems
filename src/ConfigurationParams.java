@@ -1,5 +1,11 @@
-import java.util.HashMap;
+/**
+ * Miguel Martinez
+ * June 29, 2013
+ * miguelmtz93@gmail.com
+ */
+
 import java.util.Map;
+import java.util.HashMap;
 
 /**
  * <<MODEL>>
@@ -9,7 +15,7 @@ public class ConfigurationParams {
 	private Map<String,String> heuristicParams;
 	private Map<String,String> algorithmParams;
 	private Map<String,String> objectiveFunctionParams;
-	private Map<String,String> miscelaneous;
+	private Map<String,String> miscelaneousParams;
 	private String heuristicName;
 	private String algorithmName;
 	private String objectiveFunctionName;
@@ -19,13 +25,15 @@ public class ConfigurationParams {
 		heuristicParams = new HashMap<String, String>();
 		algorithmParams = new HashMap<String, String>();
 		objectiveFunctionParams = new HashMap<String, String>();
-		miscelaneous = new HashMap<String, String>();
+		miscelaneousParams = new HashMap<String, String>();
 		heuristicName = "";
 		algorithmName = "";
 		objectiveFunctionName = "";
 	}
 	
-	//Getters
+	//Getters=============================================
+	
+	//Returns null if attr does not exist
 	public String getHeuristicParam(String attr) {
 		String param = heuristicParams.get(attr);
 		return param;
@@ -39,7 +47,7 @@ public class ConfigurationParams {
 		return param;
 	}
 	public String getMiscParam(String attr) {
-		String param = miscelaneous.get(attr);
+		String param = miscelaneousParams.get(attr);
 		return param;
 	}
 	
@@ -52,8 +60,10 @@ public class ConfigurationParams {
 	public String getobjectiveFunctionName() {
 		return objectiveFunctionName;
 	}
+	//=========================================================
 	
-	//Setters
+	
+	//Setters------------------------------------------------------
 	//These for methods ADDS a name-value pair to the map.
 	public void setHeuristicParam(String name, String value) {
 		heuristicParams.put(name, value);
@@ -65,7 +75,7 @@ public class ConfigurationParams {
 		objectiveFunctionParams.put(name, value);
 	}
 	public void setMiscParam(String name, String value) {
-		miscelaneous.put(name, value);
+		miscelaneousParams.put(name, value);
 	}
 	
 	public void setHeuristicName(String heuristicName) {
@@ -77,4 +87,5 @@ public class ConfigurationParams {
 	public void setObjectiveFunctionName(String objectiveFunctionName) {
 		this.objectiveFunctionName = objectiveFunctionName;
 	}
+	//-------------------------------------------------------------
 }

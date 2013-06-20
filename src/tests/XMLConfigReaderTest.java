@@ -1,3 +1,9 @@
+package tests;
+
+
+import ConfigurationParams;
+import XMLConfigReader;
+
 import java.io.File;
 
 /**
@@ -15,7 +21,7 @@ public class XMLConfigReaderTest {
 		XMLConfigReader a = new XMLConfigReader();
 		
 		//Change
-		ConfigurationParams b = a.read(new File("/home/mike/test.xml"));
+		ConfigurationParams b = a.createConfigurationParams(new File("/home/mike/test.txt"));
 		
 		System.out.println("Algorithm name: " + b.getAlgorithmName());
 		System.out.println("Algorithm params:");
@@ -35,6 +41,7 @@ public class XMLConfigReaderTest {
 		System.out.println("MISC params:");
 		System.out.println("\tSome: " + b.getMiscParam("Some"));
 		System.out.println("\tanother: " + b.getMiscParam("another"));
+		//------------------------
 	}
 
 }

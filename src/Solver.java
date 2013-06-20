@@ -8,7 +8,8 @@ public class Solver {
 		
 	}
 
-	public void solveOneInstance() {
+	//TODO
+	public void solveOneInstance(Problem problem) {
 		// Devuelve una solucion
 		
 	}

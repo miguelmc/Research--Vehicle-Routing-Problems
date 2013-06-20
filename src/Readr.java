@@ -9,14 +9,23 @@ public class Readr {
 	
 	public ConfigurationParams readConfiguration(File configFile) {
 		configReader = new XMLConfigReader();
-		configReader.read(configFile);
-		return null;
+		return configReader.createConfigurationParams(configFile);
 	}
 
-	public Problem readProblem(File[] problemsFile) {
+	public Problem readProblem(File problemFile) {
 		problemReader = new XMLProblemReader();
-		problemReader.read(problemsFile[0]);
-		return null;
+		return problemReader.createProblem(problemFile);
+	}
+	
+	public ConfigurationParams readConfiguration(String configPath) {
+		configReader = new XMLConfigReader();
+		return configReader.createConfigurationParams(new File(configPath));
+	}
+
+	//TODO:
+	public Problem readProblem(String problemPath) {
+		problemReader = new XMLProblemReader();
+		return problemReader.createProblem(new File(problemPath));
 	}
 
 }

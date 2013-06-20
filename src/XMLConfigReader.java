@@ -18,7 +18,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class XMLConfigReader implements IConfigReader {
 	
-	public ConfigurationParams read(File configFile) {
+	public ConfigurationParams createConfigurationParams(File configFile) {
 		//ConfigurationParams object that will be returned.
 		final ConfigurationParams configParams = new ConfigurationParams();
 		try {
@@ -27,6 +27,7 @@ public class XMLConfigReader implements IConfigReader {
 			DefaultHandler handler = new DefaultHandler() {
 
 				//true if currently inside element's tag
+				int valid = 0;
 				boolean tagAlgorithm = false;
 				boolean tagHeuristic = false;
 				boolean tagObjectiveFunction = false;
@@ -44,14 +45,17 @@ public class XMLConfigReader implements IConfigReader {
 
 					//Control of which tag is curretly open. Needed since inside all these elements it is all the same
 					if (qName.equalsIgnoreCase("algorithm")) {
+						++valid;
 						tagAlgorithm = true;
 					}
 
 					if (qName.equalsIgnoreCase("heuristic")) {
+						++valid;
 						tagHeuristic = true;
 					}
 					
 					if (qName.equalsIgnoreCase("objective_function")) {
+						++valid;
 						tagObjectiveFunction = true;
 					}
 					

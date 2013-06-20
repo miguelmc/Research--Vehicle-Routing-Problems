@@ -2,5 +2,6 @@ import java.io.File;
 
 
 public interface IConfigReader {
-	abstract ConfigurationParams read(File f);
+	//Read configuration parameters from a file.
+	public ConfigurationParams createConfigurationParams(File f);
 }
