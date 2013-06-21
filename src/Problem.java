@@ -7,25 +7,24 @@ public class Problem {
 	private String instanceName;
 	private List<Vehicle> vehicles;
 	private List<Client> clients;
-	
-	public Problem()
-	{
-		type = "";
-		instanceName = "";
+
+	public Problem() {
+		type = null;
+		instanceName = null;
 		vehicles = new ArrayList();
 		clients = new ArrayList();
 	}
 
-	public void addVehicle(Vehicle vehicle)
-	{
+	public void addVehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
 	}
-	
-	public void addClient(Client client)
-	{
+
+	public void addClient(Client client) {
 		clients.add(client);
 	}
-	
+
+	/* +++++++++++++++++++ Getters and Setters +++++++++++++++++++++++++++++ */
+
 	public String getType() {
 		return type;
 	}

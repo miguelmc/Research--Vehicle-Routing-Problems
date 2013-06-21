@@ -7,79 +7,80 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-
 public class XMLProblemReader implements IProblemReader {
 
-	//temps
+	// variables used to store the values received in the File.
 	private Vehicle vehicle;
 	private Client client;
-	@Override
+
 	public Problem createProblem(File problemFile) {
-		//ConfigurationParams object that will be returned.
+		// ConfigurationParams object that will be returned.
 		final Problem problem = new Problem();
-				try {
-					
-					SAXParserFactory factory = SAXParserFactory.newInstance();
-					SAXParser saxParser = factory.newSAXParser();
-					DefaultHandler handler = new DefaultHandler() {
+		try {
 
-						//gets access to the value inside an element (if it applies)
-						String temp;
-						
-						// looks for tag
-						public void startElement(String uri, String localName,
-								String qName, Attributes attributes)
-								throws SAXException {
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			SAXParser saxParser = factory.newSAXParser();
+			DefaultHandler handler = new DefaultHandler() {
 
-							//Control of which tag is curretly open. Needed since inside all these elements it is all the same
-							if (qName.equalsIgnoreCase("vehicles")) {
-								vehicle = new Vehicle();
-							}
-							if (qName.equalsIgnoreCase("client")) {
-								client = new Client();
-							}
-						}
+				// gets access to the value inside an element (if it applies)
+				String temp;
 
-						public void endElement(String uri, String localName,
-								String qName) throws SAXException {
-							
-							//Vehicle subtree
-							if (qName.equalsIgnoreCase("vehicles")) {
-								problem.addVehicle(vehicle);
-							} else if(qName.equalsIgnoreCase("vehicle_count")){
-								vehicle.setVehicleCount(Integer.parseInt(temp));
-							} else if(qName.equalsIgnoreCase("capacity")){
-								vehicle.setCapacity(Integer.parseInt(temp));
-							}
-							//Client subtree
-							else if(qName.equalsIgnoreCase("client")){
-								problem.addClient(client);
-							}else if(qName.equalsIgnoreCase("number")){
-								client.setNumber(Integer.parseInt(temp));
-							}else if(qName.equalsIgnoreCase("x")){
-								client.setX(Integer.parseInt(temp));
-							}else if(qName.equalsIgnoreCase("y")){
-								client.setY(Integer.parseInt(temp));
-							}else if(qName.equalsIgnoreCase("demand")){
-								client.setDemand(Integer.parseInt(temp));
-							}else if(qName.equalsIgnoreCase("service_time")){
-								client.setServiceTime(Integer.parseInt(temp));
-							}
-						}
+				// looks for tag
+				public void startElement(String uri, String localName,
+						String qName, Attributes attributes)
+						throws SAXException {
 
-						public void characters(char ch[], int start, int length)
-								throws SAXException {
-
-							temp = new String(ch, start, length);
-						}
-					};
-
-					saxParser.parse(problemFile,handler);
-
-				} catch (Exception e) {
-					e.printStackTrace();
+					// Control of which tag is curretly open. Needed since
+					// inside all these elements it is all the same
+					if (qName.equalsIgnoreCase("vehicles")) {
+						vehicle = new Vehicle();
+					}
+					if (qName.equalsIgnoreCase("client")) {
+						client = new Client();
+					}
 				}
-				return problem;
+
+				public void endElement(String uri, String localName,
+						String qName) throws SAXException {
+
+					// Vehicle subtree
+					if (qName.equalsIgnoreCase("vehicles")) {
+						problem.addVehicle(vehicle);
+					} else if (qName.equalsIgnoreCase("vehicle_count")) {
+						vehicle.setVehicleCount(Integer.parseInt(temp));
+					} else if (qName.equalsIgnoreCase("capacity")) {
+						vehicle.setCapacity(Integer.parseInt(temp));
+					}
+					// Client subtree
+					else if (qName.equalsIgnoreCase("client")) {
+						problem.addClient(client);
+					} else if (qName.equalsIgnoreCase("number")) {
+						client.setNumber(Integer.parseInt(temp));
+					} else if (qName.equalsIgnoreCase("x")) {
+						client.setX(Integer.parseInt(temp));
+					} else if (qName.equalsIgnoreCase("y")) {
+						client.setY(Integer.parseInt(temp));
+					} else if (qName.equalsIgnoreCase("demand")) {
+						client.setDemand(Integer.parseInt(temp));
+					} else if (qName.equalsIgnoreCase("service_time")) {
+						client.setServiceTime(Integer.parseInt(temp));
+					}
+				}
+
+				public void characters(char ch[], int start, int length)
+						throws SAXException {
+
+					temp = new String(ch, start, length);
+				}
+			};
+
+			saxParser.parse(problemFile, handler);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return problem;
 	}
 
 }

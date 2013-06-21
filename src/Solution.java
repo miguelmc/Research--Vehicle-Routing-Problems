@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 //MODEL
@@ -8,71 +9,98 @@ public class Solution {
 	private double totalDistance;
 	private double totalAptitude;
 	private int executionTimeInMillis;
-	//TODO check if calendar is better??
+	// TODO check if calendar is better??
 	private int dateDay;
 	private int dateMonth;
 	private int dateYear;
-	
-	public void recomputeData(){
-		//TODO
-	}
-	public void recomputeDataInAllRoutes(){
-		//TODO
-	}
-	public void addRoute(Route route){
-		//TODO
-	}
-	public void clear(){
-		//TODO
-	}
-	private void computeDistance(){
-		//TODO
+
+	public Solution(){
+		routes = new ArrayList<Route>();
 	}
 	
+	public void recomputeData() {
+		// TODO
+	}
+
+	public void recomputeDataInAllRoutes() {
+		// TODO
+	}
+
+	//TODO: inconsistence... Route's addClient is type boolean, this one is void. CHANGE ONE
+	public void addRoute(Route route) {
+		routes.add(route);
+	}
+
+	public void clear() {
+		// TODO
+	}
+
+	private void computeDistance() {
+		// TODO
+	}
+
+	private void computeTime() {
+		// TODO
+	}
+
+	// GETTERS and SETTERS------------------------------------------------------
+	public void setRoutes(List<Route> routes){
+		this.routes = routes;
+	}
 	
-	//GETTERS and SETTERS------------------------------------------------------
+	public List<Route> getRoutes(){
+		return routes;
+	}
+	
 	public int getTotalTime() {
 		return totalTime;
 	}
+
 	public void setTotalTime(int totalTime) {
 		this.totalTime = totalTime;
 	}
+	
 	public double getTotalDistance() {
 		return totalDistance;
 	}
+	
 	public void setTotalDistance(double totalDistance) {
 		this.totalDistance = totalDistance;
 	}
+
 	public double getTotalAptitude() {
 		return totalAptitude;
 	}
+
 	public void setTotalAptitude(double totalAptitude) {
 		this.totalAptitude = totalAptitude;
 	}
+
 	public int getExecutionTimeInMillis() {
 		return executionTimeInMillis;
 	}
+
 	public void setExecutionTimeInMillis(int executionTimeInMillis) {
 		this.executionTimeInMillis = executionTimeInMillis;
 	}
+
 	public int getDateDay() {
 		return dateDay;
 	}
-	public void setDateDay(int dateDay) {
-		this.dateDay = dateDay;
-	}
+
 	public int getDateMonth() {
 		return dateMonth;
 	}
-	public void setDateMonth(int dateMonth) {
-		this.dateMonth = dateMonth;
-	}
+
 	public int getDateYear() {
 		return dateYear;
 	}
-	public void setDateYear(int dateYear) {
+
+	public void setDate(int dateYear, int dateMonth, int dateDay) {
 		this.dateYear = dateYear;
+		this.dateMonth = dateMonth;
+		this.dateDay = dateDay;
 	}
-	//---------------------------------------------------------------------------
-	
+	// ---------------------------------------------------------------------------
+
 }

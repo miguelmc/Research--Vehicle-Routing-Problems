@@ -1,17 +1,16 @@
+public class ImprovementHeuristicContext {
 
-public class ImprovementHeuristicContext{
-	
-	//?
 	private ImprovementHeuristic heuristic;
-	
-	public void applyConfiguration (ConfigurationParams configParams){
-		//TODO
+
+	public void setStrategy(ImprovementHeuristic improvHeuristic) {
+		heuristic = improvHeuristic;
 	}
-	public void setStrategy(ImprovementHeuristic improvHeuristic){
-		//TODO
+
+	public void applyConfiguration(ConfigurationParams configParams) {
+		heuristic.applyConfiguration(configParams);
 	}
-	public Solution generateAlternativeSolution (Solution solution){
-		//TODO
-		return solution;
+
+	public Solution generateAlternativeSolution(Solution solution) {
+		return heuristic.generateAlternativeSolution(solution);
 	}
 }

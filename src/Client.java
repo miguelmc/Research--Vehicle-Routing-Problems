@@ -7,19 +7,20 @@ public class Client {
 	private double y;
 	private double demand;
 	private int serviceTime;
-	private int timeWindowStart; 
+	private int timeWindowStart;
 	private int timeWindowEnd;
 	private boolean isTimeWindowFlexible;
 	private ArrayList<Double> distances;
 	private ArrayList<Double> times;
 	private int truckArrivalTime;
-	private int beginOfServiceTime; 
+	private int beginOfServiceTime;
 	private double distanceToHereInRoute;
+
+
 	
-	public void setDefaults()
-	{
+	public void setDefaults() {
 		number = 0;
-		x = -1; 
+		x = -1;
 		y = -1;
 		demand = 0;
 		serviceTime = 0;
@@ -30,14 +31,18 @@ public class Client {
 		distanceToHereInRoute = 0;
 		isTimeWindowFlexible = false;
 	}
-
-	//Since client numbers are unique, if they have the same client number, they are the same.
-	public boolean equals(Client client){
-		if(this.number == client.getNumber())
-			return true;
-		return false;
-	}
 	
+	// Since client numbers are unique, if they have the same client number,
+	// they are the same.
+	public boolean equals(Client client) {
+		if (this.number == client.getNumber())
+			return true;
+		else
+			return false;
+	}
+
+	/* +++++++++++++++++++ Getters and Setters +++++++++++++++++++++++++++++ */
+
 	public int getNumber() {
 		return number;
 	}

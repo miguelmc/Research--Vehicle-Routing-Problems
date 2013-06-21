@@ -3,52 +3,46 @@ import java.io.File;
 import javax.security.auth.login.Configuration;
 
 public class Controller {
-	
+
 	private Readr reader;
 	private Solver solver;
 	private WriterContext writer;
-	
-	public Controller()
-	{
-		//Reads config and problem data
+
+	public Controller() {
+		// Reads config and problem data
 		reader = new Readr();
-		//Outputs solution
+		// Outputs solution
 		writer = new WriterContext();
-		//Process problem, gets solution
+		// Process problem, gets solution
 		solver = new Solver();
 	}
-	
-	//The 2 following methods process each problem independently
-	
-	//Process the problem handling Files
-	void processProblem(File configFile, File[] problemsFile)
-	{
+
+	// The 2 following methods process each problem independently
+
+	// Process the problem handling Files
+	public void processProblem(File configFile, File[] problemFile) {
 		ConfigurationParams config = reader.readConfiguration(configFile);
 		solver.applyConfiguration(config);
-		for(int i=0; i<problemsFile.length; i++)
-		{
-			Problem problem= reader.readProblem(problemsFile[i]);
+		for (int i = 0; i < problemFile.length; i++) {
+			Problem problem = reader.readProblem(problemFile[i]);
 			solver.solveOneInstance(problem);
-			//TODO write.
-		}
-	}
-	
-	//but also string paths
-	void processProblem(String configPath, String[] problemPaths)
-	{
-		ConfigurationParams config = reader.readConfiguration(configPath);
-		solver.applyConfiguration(config);
-		for(int i=0; i<problemPaths.length; i++)
-		{
-			Problem problem = reader.readProblem(problemPaths[i]);
-			solver.solveOneInstance(problem);
-			//TODO write.
+			// TODO write.
 		}
 	}
 
-	//TODO
-	private void setWriterType(String type)
-	{
-		//default
+	// but also string paths
+	public void processProblem(String configPath, String[] problemPath) {
+		ConfigurationParams config = reader.readConfiguration(configPath);
+		solver.applyConfiguration(config);
+		for (int i = 0; i < problemPath.length; i++) {
+			Problem problem = reader.readProblem(problemPath[i]);
+			solver.solveOneInstance(problem);
+			// TODO write.
+		}
+	}
+
+	// TODO
+	private void setWriterType(String type) {
+		// default
 	}
 }

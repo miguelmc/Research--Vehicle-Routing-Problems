@@ -2,12 +2,13 @@
 public class Vehicle {
 	private int capacity;
 	private int vehicleCount;
-	
-	public Vehicle()
-	{
+
+	public Vehicle() {
 		capacity = 0;
 		vehicleCount = 0;
 	}
+
+	/* +++++++++++++++++++ Getters and Setters +++++++++++++++++++++++++++++ */
 
 	public int getCapacity() {
 		return capacity;
