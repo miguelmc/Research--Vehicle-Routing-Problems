@@ -1,4 +1,5 @@
 package txttoXML;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -23,10 +24,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author mike
  */
 class MaxMinCoords {
-	private double  xMin, 
-					xMax, 
-					yMin, 
-					yMax;
+	private double xMin, xMax, yMin, yMax;
 
 	public MaxMinCoords() {
 		xMin = xMax = yMin = yMax = 0;
@@ -47,7 +45,7 @@ class MaxMinCoords {
 	public void setYMax(double y) {
 		yMax = y;
 	}
-	
+
 	public double getXMin() {
 		return xMin;
 	}
@@ -105,92 +103,87 @@ public class OutputGraph extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 
-	public void normalizePoints(ArrayList<double[]> points)
-	{
+	public void normalizePoints(ArrayList<double[]> points) {
 		double range;
-		double xRange = minMax.getXMax()- minMax.getXMin();
-		double yRange = minMax.getYMax()-minMax.getYMin();
+		double xRange = minMax.getXMax() - minMax.getXMin();
+		double yRange = minMax.getYMax() - minMax.getYMin();
 		double difference = xRange - yRange;
-		//To keep things in proportion, points adapt to the bigger range.
-		if(xRange > yRange)
+		// To keep things in proportion, points adapt to the bigger range.
+		if (xRange > yRange)
 			range = xRange;
 		else
 			range = yRange;
-		
+
 		double xReal;
 		double yReal;
-		//point proportional to screen
+		// point proportional to screen
 		double xFinal;
 		double yFinal;
-		
-		xReal = points.get(0)[0]-minMax.getXMin();
-		yReal = points.get(0)[1]-minMax.getYMin();
-		
-		//Space distribution between the 2 sides
-		if(difference < 0)
-			xReal += Math.abs(difference/2);
+
+		xReal = points.get(0)[0] - minMax.getXMin();
+		yReal = points.get(0)[1] - minMax.getYMin();
+
+		// Space distribution between the 2 sides
+		if (difference < 0)
+			xReal += Math.abs(difference / 2);
 		else
-			yReal += difference/2;
-		
-		xFinal = ((xReal/range)*FRAME_RANGE)+50;
-		yFinal = ((yReal/range)*FRAME_RANGE)+50;
-		
+			yReal += difference / 2;
+
+		xFinal = ((xReal / range) * FRAME_RANGE) + 50;
+		yFinal = ((yReal / range) * FRAME_RANGE) + 50;
+
 		ListIterator<double[]> listIterator = points.listIterator();
 
-		
-		for(double[] i : points)
+		for (double[] i : points)
 			System.out.println(i[0] + ", " + i[1]);
 		System.out.println("\n\n\n");
-		
-		if(listIterator.hasNext()) {
+
+		if (listIterator.hasNext()) {
 			listIterator.next();
-			listIterator.set(new double[]{xFinal,yFinal});
+			listIterator.set(new double[] { xFinal, yFinal });
 		}
-		
-		//Draws clients
-		for(int i=1; i<points.size(); i++)
-		{
-			xReal = points.get(i)[0]-minMax.getXMin();
-			yReal = points.get(i)[1]-minMax.getYMin();
-			
-			if(difference < 0)
-				xReal += Math.abs(difference/2);
+
+		// Draws clients
+		for (int i = 1; i < points.size(); i++) {
+			xReal = points.get(i)[0] - minMax.getXMin();
+			yReal = points.get(i)[1] - minMax.getYMin();
+
+			if (difference < 0)
+				xReal += Math.abs(difference / 2);
 			else
-				yReal += difference/2;
-			
-			xFinal = ((xReal/range)*FRAME_RANGE)+50;
-			yFinal = ((yReal/range)*FRAME_RANGE)+50;
-			
-			if(listIterator.hasNext()) {
+				yReal += difference / 2;
+
+			xFinal = ((xReal / range) * FRAME_RANGE) + 50;
+			yFinal = ((yReal / range) * FRAME_RANGE) + 50;
+
+			if (listIterator.hasNext()) {
 				listIterator.next();
-				listIterator.set(new double[]{xFinal,yFinal});
+				listIterator.set(new double[] { xFinal, yFinal });
 			}
 		}
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
-		
+
 		super.paint(g);
-		
-		for(double[] i : points)
+
+		for (double[] i : points)
 			System.out.println(i[0] + ", " + i[1]);
 		System.out.println("\n\n\n");
-		
-		
-		//Draws depot
-		g.fillRect((int)points.get(0)[0], (int)points.get(0)[1], 7, 7);
-		
-		//Draws clients
-		for(int i=1; i<points.size(); i++)
-			g.fillOval((int)points.get(i)[0], (int)points.get(i)[1], 4, 4);
-		
-		
-		for(double[] i : points)
+
+		// Draws depot
+		g.fillRect((int) points.get(0)[0], (int) points.get(0)[1], 7, 7);
+
+		// Draws clients
+		for (int i = 1; i < points.size(); i++)
+			g.fillOval((int) points.get(i)[0], (int) points.get(i)[1], 4, 4);
+
+		for (double[] i : points)
 			System.out.println(i[0] + ", " + i[1]);
-		
+
 	}
-	
+
 	/**
 	 * @param args
 	 *            the command line arguments
@@ -296,7 +289,7 @@ public class OutputGraph extends javax.swing.JFrame {
 				}
 			};
 
-			//TODO: TO CHANGE
+			// TODO: TO CHANGE
 			saxParser.parse(
 					"/home/mike/Dropbox/Michael Cobos/solomon_25_xml/R102.xml",
 					handler);
@@ -337,7 +330,8 @@ public class OutputGraph extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify
 	final private int FRAME_RANGE = 700;
-	final private Dimension FRAME_DIMENSION = new Dimension(FRAME_RANGE+50,FRAME_RANGE+50);
+	final private Dimension FRAME_DIMENSION = new Dimension(FRAME_RANGE + 50,
+			FRAME_RANGE + 50);
 	private ArrayList<double[]> points;
 	private MaxMinCoords minMax;
 	// End of variables declaration

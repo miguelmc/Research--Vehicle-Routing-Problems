@@ -1,0 +1,14 @@
+package vrpApp;
+
+//unimplemented
+
+public class GraphicalWriter implements IWriter {
+
+	@Override
+	public void write(String problemName, Solution solution,
+			ConfigurationParams configParams) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
