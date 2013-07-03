@@ -16,11 +16,13 @@ public abstract class ImprovementHeuristic {
 	public abstract Solution generateAlternativeSolution(Solution solution);
 
 	private void saveCopyOfConfigParams(ConfigurationParams configParams) {
-		// TODO
+		configuration = configParams.getHeuristicParams();
 	}
 
 	protected int generateRandomInteger(int lowerLimit, int upperLimit) {
-		// TODO
-		return -1;
+		int randomInt;
+		randomInt = lowerLimit + (int)(Math.random() * ((upperLimit - lowerLimit) + 1));
+		return randomInt;
 	}
+	
 }

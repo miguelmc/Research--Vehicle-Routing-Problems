@@ -7,7 +7,7 @@ public class NAH extends ConstructiveHeuristic {
 
 	private ObjectiveFunctionContext objectiveFunction;
 
-	public Route createNewRoute(List<Client> clients) {
+	public Route createNewRoute(List<Client> clients, int vehicleCapacity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

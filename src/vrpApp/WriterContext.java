@@ -1,12 +1,12 @@
 package vrpApp;
 
-import java.io.IOException;
+import java.io.File;
 
 public class WriterContext {
 
-	private IWriter writer;
+	private Writr writer;
 
-	public void setStrategy(IWriter writer) {
+	public void setStrategy(Writr writer) {
 		this.writer = writer;
 	}
 
@@ -14,5 +14,9 @@ public class WriterContext {
 	public void write(String problemName, Solution solution,
 			ConfigurationParams configParams) {
 		writer.write(problemName, solution, configParams);
+	}
+	
+	public void setOutputFolder(File outputFolder){
+		writer.setOutputFolder(outputFolder);
 	}
 }

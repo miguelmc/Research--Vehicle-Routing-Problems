@@ -10,15 +10,14 @@ public abstract class ConstructiveHeuristic {
 	protected Map<String, String> configuration;
 
 	public void applyConfiguration(ConfigurationParams configParams) {
-
+		saveCopyOfConfigParams(configParams);
 	}
 
 	private void saveCopyOfConfigParams(ConfigurationParams configParams) {
 		configuration = configParams.getHeuristicParams();
 	}
 
-	public void setObjectiveFunction(ObjectiveFunctionContext objFunction) {
-	}
+	public void setObjectiveFunction(ObjectiveFunctionContext objFunction) {}
 
-	public abstract Route createNewRoute(List<Client> clients);
+	public abstract Route createNewRoute(List<Client> clients, int vehicleCapacity);
 }

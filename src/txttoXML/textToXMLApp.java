@@ -264,7 +264,7 @@ public class textToXMLApp extends javax.swing.JFrame {
 	}
 
 	private void browseBtn2ActionPerformed(java.awt.event.ActionEvent evt) {
-		// ONLY files
+		// ONLY directories
 		folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		// NO multiple files
 		folderChooser.setMultiSelectionEnabled(false);

@@ -1,5 +1,6 @@
 package tests;
 
+import java.io.File;
 import java.io.IOException;
 
 import vrpApp.Client;
@@ -23,7 +24,7 @@ public class TestXMLWriter {
 		Client c;
 		Route r;
 		for (int i = 0; i < 5; i++) {
-			r = new Route();
+			r = new Route(new Client(), 5);
 			for (int j = 1; j < 7; j++) {
 				c = new Client();
 				c.setNumber(j);
@@ -38,6 +39,7 @@ public class TestXMLWriter {
 		s.setTotalTime(1002);
 
 		SimpleWriter x = new SimpleWriter();
+		x.setOutputFolder(new File("/home/mike"));
 		x.write("test1", s, cp);
 
 		// Test 2
@@ -45,7 +47,7 @@ public class TestXMLWriter {
 
 		s = new Solution();
 		for (int i = 0; i < 5; i++) {
-			r = new Route();
+			r = new Route(new Client(), 5);
 			for (int j = 1; j < 7; j++) {
 				c = new Client();
 				c.setNumber(j);

@@ -12,8 +12,8 @@ public class Problem {
 	public Problem() {
 		type = null;
 		instanceName = null;
-		vehicles = new ArrayList();
-		clients = new ArrayList();
+		vehicles = new ArrayList<Vehicle>();
+		clients = new ArrayList<Client>();
 	}
 
 	public void addVehicle(Vehicle vehicle) {
@@ -44,5 +44,9 @@ public class Problem {
 	
 	public List<Client> getClients() {
 		return clients;
+	}
+	
+	public List<Vehicle> getVehicles() {
+		return vehicles;
 	}
 }

@@ -13,8 +13,8 @@ public class ConstructiveHeuristicContext {
 		heuristic.applyConfiguration(configParams);
 	}
 
-	public Route createNewRoute(List<Client> clients) {
-		return heuristic.createNewRoute(clients);
+	public Route createNewRoute(List<Client> clients, int vehicleCapacity) {
+		return heuristic.createNewRoute(clients, vehicleCapacity);
 
 	}
 

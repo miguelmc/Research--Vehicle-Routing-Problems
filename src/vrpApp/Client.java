@@ -1,9 +1,10 @@
 package vrpApp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //MODEL
+// This class will be first created and should be preserved unmodified thorough the program.
+
 public class Client {
 	private int number;
 	private double x;
@@ -15,9 +16,6 @@ public class Client {
 	private boolean isTimeWindowFlexible;
 	private List<Double> distances;
 	private List<Integer> times;
-	private int truckArrivalTime;
-	private int beginOfServiceTime;
-	private double distanceToHereInRoute;
 
 	public void setDefaults() {
 		number = 0;
@@ -27,9 +25,6 @@ public class Client {
 		serviceTime = 0;
 		timeWindowStart = 0;
 		timeWindowEnd = 0;
-		truckArrivalTime = 0;
-		beginOfServiceTime = 0;
-		distanceToHereInRoute = 0;
 		isTimeWindowFlexible = false;
 		distances = null;
 		times = null;
@@ -38,15 +33,31 @@ public class Client {
 	// Since client numbers are unique, if they have the same client number,
 	// they are the same.
 	public boolean equals(Client client) {
-		if (this.number == client.getNumber())
+		if (this.number == client.getClientNumber())
 			return true;
 		else
 			return false;
 	}
+	
+	public double getDistanceTo(int clientNumber){
+		return distances.get(clientNumber);
+	}
+	
+	public int getTimeTo(int clientNumber){
+		return times.get(clientNumber);
+	}
 
 	/* +++++++++++++++++++ Getters and Setters +++++++++++++++++++++++++++++ */
 
-	public int getNumber() {
+	public void setDistances(List<Double> distances){
+		this.distances = distances;
+	}
+	
+	public void setTimes(List<Integer> times){
+		this.times = times;
+	}
+	
+	public int getClientNumber() {
 		return number;
 	}
 
@@ -108,29 +119,5 @@ public class Client {
 
 	public void setTimeWindowFlexible(boolean isTimeWindowFlexible) {
 		this.isTimeWindowFlexible = isTimeWindowFlexible;
-	}
-
-	public int getTruckArrivalTime() {
-		return truckArrivalTime;
-	}
-
-	public void setTruckArrivalTime(int truckArrivalTime) {
-		this.truckArrivalTime = truckArrivalTime;
-	}
-
-	public int getBeginOfServiceTime() {
-		return beginOfServiceTime;
-	}
-
-	public void setBeginOfServiceTime(int beginOfServiceTime) {
-		this.beginOfServiceTime = beginOfServiceTime;
-	}
-
-	public double getDistanceToHereInRoute() {
-		return distanceToHereInRoute;
-	}
-
-	public void setDistanceToHereInRoute(double distanceToHereInRoute) {
-		this.distanceToHereInRoute = distanceToHereInRoute;
 	}
 }

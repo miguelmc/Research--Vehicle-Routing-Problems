@@ -12,15 +12,30 @@ public class Solution {
 	private double totalDistance;
 	private double totalAptitude;
 	private int executionTimeInMillis;
-	// TODO check if calendar is better??
 	private Calendar date;
 
 	public Solution() {
+		routes = new ArrayList<Route>();
 		totalTime = 0;
 		totalDistance = 0;
 		totalAptitude = 0;
 		executionTimeInMillis = 0;
+		
+	}
+	
+	public Solution(Solution solution) {
+		// Create a deep copy for this solution of the same data in the other routes
 		routes = new ArrayList<Route>();
+		for(Route route: solution.getRoutes()){
+			routes.add(new Route(route));
+		}
+		
+		// Copy all other primitive types
+		totalTime = solution.getTotalTime();
+		totalDistance = solution.getTotalDistance();
+		totalAptitude = solution.getTotalAptitude();
+		executionTimeInMillis = 0;
+		
 	}
 
 	public void recomputeData() {
@@ -108,5 +123,18 @@ public class Solution {
 
 	public void setCurrentDate() {
 		date = Calendar.getInstance();
+	}
+	
+	public int getRouteCount(){
+		return routes.size();
+	}
+
+	public Route getRouteAt(int index) {
+		return routes.get(index);
+	}
+
+	public void deleteRoute(int index) {
+		routes.remove(index);
+		recomputeData();
 	}
 }

@@ -22,13 +22,13 @@ public class textToXML {
 
 		// gets all coordinates before beginning.
 		ArrayList<int[]> coords = new ArrayList<int[]>();
-		getCoords(coords, input);
-
+		int numClients = getCoords(coords, input);
 		input = new Scanner(new FileReader(inputName));
-
+		
 		output.write("<?xml version=\"1.0\"?>\n<instance>\n");
 		output.write("\t<type>CVRPTW</type>\n");
 		output.write("\t<name>" + input.nextLine() + "</name>\n");
+		output.write("\t<client_count>" + (numClients-1) + "</client_count>\n");
 		output.write("\t<vehicles>\n");
 
 		// There's only one type of vehicle...
@@ -59,8 +59,8 @@ public class textToXML {
 			output.write("\t\t<demand>" + input.nextInt() + "</demand>\n");
 
 			output.write("\t\t<time_window>\n");
-			output.write("\t\t\t<start>" + input.nextInt() + "</start>\n");
-			output.write("\t\t\t<end>" + input.nextInt() + "</end>\n");
+			output.write("\t\t\t<start>" + input.nextInt()*60 + "</start>\n");
+			output.write("\t\t\t<end>" + input.nextInt()*60 + "</end>\n");
 
 			// Yes for all clients, not for deposit.
 			output.write("\t\t\t<flexible>");
@@ -72,7 +72,7 @@ public class textToXML {
 
 			output.write("\t\t</time_window>\n");
 
-			output.write("\t\t<service_time>" + input.nextInt()
+			output.write("\t\t<service_time>" + input.nextInt()*60
 					+ "</service_time>\n");
 
 			output.write("\t\t<distances>\n");
@@ -94,7 +94,7 @@ public class textToXML {
 
 			output.write("\t\t<times>\n");
 			for (int i = 0; i < distances.length; i++)
-				output.write("\t\t\t<client_" + i + ">" + distances[i]
+				output.write("\t\t\t<client_" + i + ">" + (int)(distances[i]*60)
 						+ "</client_" + i + ">\n");
 			output.write("\t\t</times>\n");
 
@@ -107,13 +107,29 @@ public class textToXML {
 
 	}
 
-	private static void getCoords(ArrayList<int[]> coords, Scanner input) {
+	private static int getClients(Scanner input){
+		int count =0;
+		
+		for(int i=0; i<10; i++)
+			input.nextLine();
+		
+		while(input.hasNextInt()){
+			++count;
+			input.nextLine();
+		}
+		System.out.println(count);
+		return count;
+	}
+	
+	private static int getCoords(ArrayList<int[]> coords, Scanner input) {
 
+		int count = 0;
 		// skip to coordinates
 		for (int i = 0; i < 9; i++)
 			input.nextLine();
 
 		while (input.hasNextInt()) {
+			++count;
 			int[] pair = new int[2];
 
 			// ignored field
@@ -128,5 +144,6 @@ public class textToXML {
 				input.nextInt();
 		}
 		input.close();
+		return count;
 	}
 }

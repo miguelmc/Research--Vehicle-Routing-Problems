@@ -2,8 +2,6 @@ package vrpApp;
 
 import java.io.File;
 
-import javax.security.auth.login.Configuration;
-
 //This class is in charge of receiving the File objects obtaining the problem specification(s) and the Configuration parameters
 //via Readr, apply the current configuration to the system and pass the problem(s) to the Solver. Then it will present the solution
 // using WriterContext.
@@ -24,7 +22,7 @@ public class Controller {
 
 	// Read solve and show the problems receiving File Objects
 	// Main function of this class.
-	public void processProblem(File configFile, File[] problemFiles) {
+	public void processProblem(File configFile, File[] problemFiles, File outputFile) {
 		// Read and apply Configuration to the system
 		ConfigurationParams config = reader.readConfiguration(configFile);
 		solver.applyConfiguration(config);
@@ -34,16 +32,21 @@ public class Controller {
 		// Only the simple writer is implemented by now, later this could be a
 		// parameter passed in the config file under miscellaneous
 
+		// Set the file path where the output would be written 
+		//DON'T DELETE. Needed for SimpleWriter.
+		writer.setOutputFolder(outputFile);
+		Problem problem;
+		Solution solution;
 		// Solve problems and show solutions in the selected writer
 		for (File problemFile : problemFiles) {
-			Problem problem = reader.readProblem(problemFile);
-			Solution solution = solver.solveOneInstance(problem);
+			problem = reader.readProblem(problemFile);
+			solution = solver.solveOneInstance(problem);
 			writer.write(problem.getInstanceName(), solution, config);
 		}
 	}
 
 	// Read solve and show the problems receiving String Objects
-	public void processProblem(String configPath, String[] problemPaths) {
+	public void processProblem(String configPath, String[] problemPaths, String outputPath) {
 		// Obtain all File handlers for the paths received
 		File configFile = null;
 		File[] problemFiles = new File[problemPaths.length];
@@ -53,7 +56,7 @@ public class Controller {
 		}
 
 		// Call the main function with the Files obtained
-		processProblem(configFile, problemFiles);
+		processProblem(configFile, problemFiles, new File(outputPath));
 	}
 
 	// To add more types of writers one has to add another line in this function
@@ -64,10 +67,13 @@ public class Controller {
 		switch (type) {
 		case "simple":
 			writer.setStrategy(new SimpleWriter());
+			break;
 		case "graphical":
 			writer.setStrategy(new GraphicalWriter());
+			break;
 		default:
 			writer.setStrategy(new SimpleWriter());
+			break;
 		}
 	}
 }

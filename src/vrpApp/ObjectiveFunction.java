@@ -8,7 +8,7 @@ public class ObjectiveFunction {
 	protected Map<String, String> configuration;
 
 	public void applyConfiguration(ConfigurationParams configParams) {
-		// TODO
+		saveCopyOfConfigParams(configParams);
 	}
 
 	public double computeAptitude(Solution solution) {
@@ -16,15 +16,18 @@ public class ObjectiveFunction {
 	}
 
 	public double computeAptitude(Route route) {
-		// TODO
 		return -1;
 	}
 
 	public double computeAptitude(Client client1, Client client2) {
 		return -1;
 	}
+	
+	public double computeAptitude(Problem problem, Solution solution) {
+		return -1;
+	}
 
 	private void saveCopyOfConfigParams(ConfigurationParams configParams) {
-		// TODO
+		configuration = configParams.getOFParams(); 
 	}
 }

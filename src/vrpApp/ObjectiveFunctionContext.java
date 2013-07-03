@@ -2,7 +2,7 @@ package vrpApp;
 
 public class ObjectiveFunctionContext {
 	private ObjectiveFunction objectiveFunction;
-
+	
 	public void setStrategy(ObjectiveFunction objFunction) {
 		objectiveFunction = objFunction;
 	}
@@ -21,5 +21,9 @@ public class ObjectiveFunctionContext {
 
 	public double computeAptitude(Client client1, Client client2) {
 		return objectiveFunction.computeAptitude(client1, client2);
+	}
+	
+	public double computeAptitude(Problem problem, Solution solution) {
+		return objectiveFunction.computeAptitude(problem, solution);
 	}
 }

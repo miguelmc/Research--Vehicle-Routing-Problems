@@ -7,7 +7,7 @@ public class Readr {
 	private IConfigReader configReader;
 	private IProblemReader problemReader;
 
-	public ConfigurationParams readConfiguration(File configFile) {
+	public ConfigurationParams readConfiguration(File configFile){
 		configReader = new XMLConfigReader();
 		return configReader.createConfigurationParams(configFile);
 	}
