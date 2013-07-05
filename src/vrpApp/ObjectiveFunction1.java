@@ -1,5 +1,7 @@
 package vrpApp;
 
+// This function calculates the aptitude of a Solution using the total time, total distance and number of windows not respected
+// It uses certain parameters received in the configuration object to normalize and weight the final aptitude.
 public class ObjectiveFunction1 extends ObjectiveFunction {
 	
 	@Override
@@ -11,9 +13,9 @@ public class ObjectiveFunction1 extends ObjectiveFunction {
 		double distFactor = 0.0;
 		double timeFactor = 0.0; 
 		double windowFactor = 0.0;
-		double normDist = 0.0;
-		double normTime = 0.0;
-		double normWindow = 0.0;
+		double normalizedDistance = 0.0;
+		double normalizedTime = 0.0;
+		double normalizedWindow = 0.0;
 		int totalClients = 0; 
 		int notRespectedWindows = 0;
 		
@@ -32,7 +34,6 @@ public class ObjectiveFunction1 extends ObjectiveFunction {
 		}
 		
 		// Calculate the total number of clients and number of not respected windows.
-		
 		for(Route route : solution.getRoutes()){
 			totalClients += route.getClientCount();
 			for(ClientLog clientLog : route.getClientLogs()){
@@ -41,11 +42,13 @@ public class ObjectiveFunction1 extends ObjectiveFunction {
 			}
 		}
 
-		normDist = solution.getTotalDistance()/		(totalClients*distFactor);
-		normTime = solution.getTotalTime()/	(totalClients*timeFactor);
-		normWindow = notRespectedWindows/	(totalClients*windowFactor);
+		//Normalize the factors
+		normalizedDistance = solution.getTotalDistance()/		(totalClients*distFactor);
+		normalizedTime = solution.getTotalTime()/	(totalClients*timeFactor);
+		normalizedWindow = notRespectedWindows/	(totalClients*windowFactor);
 		
-		double response = alpha*normDist + beta*normTime + gamma*normWindow;
-		return response;
+		//Calculate total aptitude
+		double aptitude = alpha*normalizedDistance + beta*normalizedTime + gamma*normalizedWindow;
+		return aptitude;
 	}
 }

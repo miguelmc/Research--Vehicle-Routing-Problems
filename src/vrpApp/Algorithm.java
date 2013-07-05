@@ -28,9 +28,14 @@ import java.util.Map;
 		case "ObjectiveFunction1":
 			objectiveFunction.setStrategy(new ObjectiveFunction1());
 			break;
+		
+		case "ObjectiveFunction2": 
+			objectiveFunction.setStrategy(new ObjectiveFunction2());
+			break;
 			
-		// case "ObjectiveFunction2": 
-			//objectiveFunction.setStrategy(new ObjectiveFunction2());
+		case "ObjectiveFunction3": 
+			objectiveFunction.setStrategy(new ObjectiveFunction3());
+			break;
 			
 		default:
 			objectiveFunction.setStrategy(new ObjectiveFunction());

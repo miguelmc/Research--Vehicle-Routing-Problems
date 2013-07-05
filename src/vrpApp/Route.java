@@ -200,6 +200,7 @@ public class Route {
 		return clientLogs;
 	}
 
+	//getClientAt(0) = getDepot()
 	public Client getClientAt(int pos) {
 		return clientLogs.get(pos).getClient();
 	}
@@ -221,7 +222,11 @@ public class Route {
 	}
 
 	public Client getDepot(){
-		return clientLogs.get(0).getClient();
+		return getClientAt(0);
+	}
+
+	public ClientLog getClientLogAt(int pos) {
+		return clientLogs.get(pos);
 	}
 	
 	//Before adding setters for the depot and the vehicle capacity, take into account that the route

@@ -29,6 +29,8 @@ public class XMLConfigReader extends DefaultHandler implements IConfigReader {
 	private boolean tagObjectiveFunction = false;
 	private boolean tagMiscelaneous = false;
 	private boolean tagParameter = false;
+	//checks if XML is actually a configuration file;
+	private boolean tagConfiguration = false;
 	// used to store the value "name" inside one parameter before it
 	// is stored
 	private String nameVal;
@@ -66,6 +68,10 @@ public class XMLConfigReader extends DefaultHandler implements IConfigReader {
 
 		// Control of which tag is curretly open. Needed since
 		// inside all these elements it is all the same
+		if (qName.equalsIgnoreCase("configuration")) {
+			tagConfiguration = true;
+		}
+		
 		if (qName.equalsIgnoreCase("algorithm")) {
 			tagAlgorithm = true;
 		}
@@ -102,7 +108,8 @@ public class XMLConfigReader extends DefaultHandler implements IConfigReader {
 		 * "XMLConfigReader.createConfigurationParams(File)", true);
 		 * }
 		 */
-
+		if(!tagConfiguration)
+			ErrorHandler.showError(23, "XMLConfigReader.createConfigurationParams(File)", true);
 
 		if (qName.equalsIgnoreCase("algorithm")) {
 

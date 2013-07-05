@@ -10,13 +10,19 @@ public class WriterContext {
 		this.writer = writer;
 	}
 
-	// Needs exception because of further Writer classes
-	public void write(String problemName, Solution solution,
-			ConfigurationParams configParams) {
-		writer.write(problemName, solution, configParams);
+	public void write(String problemName, Solution solution, ConfigurationParams configParams) {
+		try{
+			writer.write(problemName, solution, configParams);
+		}catch(NullPointerException e){
+			ErrorHandler.showError(18, "WriterContext.write(String,Solution,ConfigurationParams)", true);
+		}
 	}
 	
 	public void setOutputFolder(File outputFolder){
-		writer.setOutputFolder(outputFolder);
+		try{
+			writer.setOutputFolder(outputFolder);
+		}catch(NullPointerException e){
+			ErrorHandler.showError(18, "WriterContext.setOutputFolder(File)", true);
+		}
 	}
 }

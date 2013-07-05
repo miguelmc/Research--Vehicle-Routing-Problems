@@ -26,8 +26,15 @@ public final class ErrorHandler {
 		errorDescription.put(14, "Heuristic is not receiving the parameters needed");
 		errorDescription.put(15, "Algorithm is not receiving the parameters needed");
 		errorDescription.put(16, "Default output path does not exist");
-		errorDescription.put(17, "Output Folder not specified or setOutputFolder not called (needed for SimpleWriter");
-
+		errorDescription.put(17, "Output Folder not specified or setOutputFolder not called (needed for SimpleWriter)");
+		errorDescription.put(18, "Writr was not set before using it.");
+		errorDescription.put(18, "Writr was not set before using it.");
+		errorDescription.put(19, "Algorithm was not set before using it.");
+		errorDescription.put(20, "Constructive heuristic was not set before using it.");
+		errorDescription.put(21, "Improvement heuristic was not set before using it.");
+		errorDescription.put(22, "Objective function was not set before using it.");
+		errorDescription.put(23, "XML sent in configuration is not a configuration file.");
+		errorDescription.put(24, "XML('s) sent in problem is not a problem file.");
 	}
 
 	// This private Constructor is just so that this class cannot be

@@ -10,15 +10,29 @@ public class ConstructiveHeuristicContext {
 	}
 
 	public void applyConfiguration(ConfigurationParams configParams) {
-		heuristic.applyConfiguration(configParams);
+		try{
+			heuristic.applyConfiguration(configParams);
+		}catch(NullPointerException e){
+			ErrorHandler.showError(20, "ConstructiveHeuristicContext.applyConfiguration(ConfigurationParams)" , true);
+		}
 	}
 
 	public Route createNewRoute(List<Client> clients, int vehicleCapacity) {
-		return heuristic.createNewRoute(clients, vehicleCapacity);
+		Route r=null;
+		try{
+			r = heuristic.createNewRoute(clients, vehicleCapacity);
+		}catch(NullPointerException e){
+			ErrorHandler.showError(20, "ConstructiveHeuristicContext.createNewRoute(List<Client>, int)" , true);
+		}
+		return r;
 
 	}
 
 	public void setObjectiveFunction(ObjectiveFunctionContext objFunction) {
-		heuristic.setObjectiveFunction(objFunction);
+		try{
+			heuristic.setObjectiveFunction(objFunction);
+		}catch(NullPointerException e){
+			ErrorHandler.showError(20, "ConstructiveHeuristicContext.setObjectiveFunction(ObjectiveFunctionContext)" , true);
+		}
 	}
 }

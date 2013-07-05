@@ -9,10 +9,20 @@ public class ImprovementHeuristicContext {
 	}
 
 	public void applyConfiguration(ConfigurationParams configParams) {
-		heuristic.applyConfiguration(configParams);
+		try {
+			heuristic.applyConfiguration(configParams);
+		}catch(NullPointerException e){
+			ErrorHandler.showError(21, "ImprovementHeuristicContextapplyConfiguration(ConfigurationParams)" , true);
+		}
 	}
 
 	public Solution generateAlternativeSolution(Solution solution) {
-		return heuristic.generateAlternativeSolution(solution);
+		Solution s = null;
+		try{
+			s = heuristic.generateAlternativeSolution(solution);
+		}catch(NullPointerException e){
+			ErrorHandler.showError(21, "ImprovementHeuristicContext.generateAlternativeSolution(Solution)" , true);
+		}
+		return s;
 	}
 }

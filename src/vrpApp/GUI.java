@@ -101,14 +101,7 @@ public class GUI extends javax.swing.JFrame {
 											problemChooser.getSelectedFiles(), dir);
 				
 				statusLabel.setText("DONE");
-				
-				/*Container frame = exitBtn.getParent();
-				do
-					frame = frame.getParent();
-				while (!(frame instanceof JFrame));
-				((JFrame) frame).dispose();*/
-				
-				
+	
 			}
 		});
 

@@ -19,7 +19,7 @@ public class ObjectiveFunction {
 		return -1;
 	}
 
-	public double computeAptitude(Client client1, Client client2) {
+	public double computeAptitude(ClientLog client1, ClientLog client2) {
 		return -1;
 	}
 	

@@ -25,6 +25,8 @@ public class XMLProblemReader extends DefaultHandler implements IProblemReader {
 	private String valueInsideATag;
 	private boolean tagDistances = false;
 	private boolean tagTimes = false;
+	//checks if XML is actually a configuration file;
+	private boolean tagInstance = false;
 	private int numClients;
 	private String temp;
 	
@@ -59,6 +61,10 @@ public class XMLProblemReader extends DefaultHandler implements IProblemReader {
 
 		// Control of which tag is curretly open. Needed since
 		// inside all these elements it is all the same
+		if (qName.equalsIgnoreCase("instance")) {
+			tagInstance = true;
+		}
+		
 		if (qName.equalsIgnoreCase("set")) {
 			vehicle = new Vehicle();
 		}
@@ -84,6 +90,10 @@ public class XMLProblemReader extends DefaultHandler implements IProblemReader {
 	public void endElement(String uri, String localName,
 			String qName) throws SAXException {
 
+		//Error check
+		if(!tagInstance)
+			ErrorHandler.showError(24, "XMLProblemReader.createConfigurationParams(File)", true);
+		
 		//General
 		if(qName.equalsIgnoreCase("type")){
 			problem.setType(valueInsideATag);

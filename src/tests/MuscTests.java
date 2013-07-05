@@ -27,7 +27,7 @@ public class MuscTests {
 	
 	public static void change(ArrayList<Dog> b){
 		ArrayList c = b;
-		b.get(1)
+		b.get(1);
 	}
 	
 }

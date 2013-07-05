@@ -21,8 +21,5 @@ public class XMLProblemReaderTest {
 			System.out.println("\tVehicleCount:\t" + v.getVehicleCount());
 		}
 		System.out.println("Clients:");
-		for(Client c : p.getClients()){
-			System.out.println("\tNumber:\t" + c.getNumber());
-		}
 	}
 }
