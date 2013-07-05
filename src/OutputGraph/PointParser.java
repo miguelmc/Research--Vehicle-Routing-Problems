@@ -57,6 +57,7 @@ public class PointParser extends DefaultHandler{
 		}
 		if (qName.equalsIgnoreCase("number")) {
 			currentClient = Integer.parseInt(valueInsideATag);
+			points.get(currentClient).setNumber(currentClient);
 		}
 		if (qName.equalsIgnoreCase("x")) {
 			points.get(currentClient).setX(Double.parseDouble(valueInsideATag));

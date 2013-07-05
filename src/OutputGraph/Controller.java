@@ -10,7 +10,7 @@ public class Controller {
 	PointParser pointParser;
 	GraphShower graphShower;
 	private MaxMinCoords minMax;
-	final private int FRAME_RANGE = 700;
+	final private int FRAME_RANGE = 800;
 	
 	public Controller(){
 		archParser = new ArchParser();
@@ -41,26 +41,20 @@ public class Controller {
 		// point proportional to screen
 		double xFinal;
 		double yFinal;
-		ListIterator<Point> listIterator = points.listIterator();
-
 		
-		// Draws clients
-		for (int i = 0; i < points.size(); i++) {
-			
+		for(Point point : points) {
 			//Moves the point the closest to the origin without removing any point from the screen
 			//to scale it better.
-			xReal = points.get(i).getX() - minMax.getXMin();
+			xReal = point.getX() - minMax.getXMin();
 			//To adapt points to a norrmal x-y plane.
-			yReal = minMax.getYMax() - points.get(i).getY();
+			yReal = minMax.getYMax() - point.getY();
 			
 			
 			xFinal = ((xReal / range) * FRAME_RANGE) + 50;
 			yFinal = ((yReal / range) * FRAME_RANGE) + 50;
 			
-			if (listIterator.hasNext()) {
-				listIterator.next();
-				listIterator.set(new Point (xFinal, yFinal));
-			}
+			point.setX(xFinal);
+			point.setY(yFinal);
 		}
 	}
 }

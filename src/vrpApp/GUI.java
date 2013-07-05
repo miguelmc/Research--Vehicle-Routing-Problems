@@ -100,8 +100,7 @@ public class GUI extends javax.swing.JFrame {
 				controller.processProblem(configChooser.getSelectedFile(),
 											problemChooser.getSelectedFiles(), dir);
 				
-				statusLabel.setText("DONE");
-	
+				statusLabel.setText("DONE!");
 			}
 		});
 

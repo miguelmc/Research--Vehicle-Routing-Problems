@@ -67,7 +67,6 @@ public class ArchParser extends DefaultHandler{
 		if(qName.matches("client_\\d+")) {
 			curr = Integer.parseInt(valueInsideATag);
 			index = Integer.parseInt(qName.split("_")[1]) -1 ;
-			System.out.println(curr + " " + index);
 			route.addPoint(index, points.get(curr));
 		}
 	}

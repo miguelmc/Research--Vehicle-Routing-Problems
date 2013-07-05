@@ -30,7 +30,6 @@ public class SimpleWriter extends Writr {
 
 
 			output.write("<?xml version=\"1.0\"?>" + lineSep + "<solution>" + lineSep + "\t<instance>" + lineSep);
-			// TODO
 			output.write("\t\t<name>" + problemName + "</name>" + lineSep);
 
 			// ALGORITHM-----------------------------------------------------------------------------
